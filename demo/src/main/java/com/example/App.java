@@ -160,7 +160,7 @@ public class App extends Application {
         grid.add(lUsername, 0, 0); grid.add(tName, 1, 0); grid.add(lPassword, 0, 1); grid.add(tPassword, 1, 1);
         loginPage.getChildren().addAll(title, grid, buttons);
         okBtn.setOnAction(e ->{
-            login(tName.getText(), tPassword.getText());
+            login(stage, tName.getText(), tPassword.getText());
         });
         cancelBtn.setOnAction(e ->{
             cancel(stage);
@@ -170,6 +170,12 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
+    // public void loggedIn(Stage stage){
+    //     VBox page = new VBox();
+    //     Label title = new Label("Logged In");
+
+    // }
 
     // FILE ACTIONS
     public void signup(Stage stage, String username, String name, String surname, String password){
@@ -183,7 +189,7 @@ public class App extends Application {
             System.exit(1);
         }
     }
-    public void login(String name, String password){
+    public void login(Stage stage, String name, String password){
         String accounts = "";
         try{
             File file = new File(filepath);
@@ -207,6 +213,7 @@ public class App extends Application {
                 logged.setResizable(false);
                 logged.showAndWait();
                 loggedIn = true;
+                // loggedIn(stage);
                 break;
             }else{
                 System.out.println("Not matching: " + matcher.group(1) + " : " + matcher.group(2));
